@@ -348,7 +348,7 @@ def rules():
     send.msg("Sweet pears give him energy to walk faster.", WHITE, LATO_REG_32, SCREEN_WIDTH/2, SCREEN_HEIGHT/2+80)
     send.msg("But be careful, stones might hurt him!", WHITE, LATO_REG_32, SCREEN_WIDTH/2, SCREEN_HEIGHT/2+124)
     send.msg("Press [space] to play the game", WHITE, LATO_BOLD_32, SCREEN_WIDTH/2, SCREEN_HEIGHT/2+220)
-    draw(SCREEN_WIDTH-220, SCREEN_HEIGHT-60, pygame.image.load(hedgehogLeft))
+    draw(SCREEN_WIDTH-280, SCREEN_HEIGHT-230, pygame.image.load('images/hedgehog256_rev.png'))
     pygame.display.update()
 
     while a:
@@ -360,6 +360,21 @@ def rules():
                 if event.key == pygame.K_SPACE:
                     a = False
                     start_the_game()
+
+def authors():
+    a = True
+    
+    screen.fill((10,92,43))
+    send.msg("This game was made by", WHITE, pygame.font.Font('fonts/Lato-Regular.ttf', 64), SCREEN_WIDTH/2, SCREEN_HEIGHT/2-84)
+    send.msg("Majsterkovic & PuffyPotato", WHITE, pygame.font.Font('fonts/Lato-Regular.ttf', 64), SCREEN_WIDTH/2, SCREEN_HEIGHT/2-12)
+    send.msg("Inspired by Jacuś", (11,93,44), pygame.font.Font('fonts/Lato-Regular.ttf', 64), SCREEN_WIDTH/2, SCREEN_HEIGHT/2+60)
+    pygame.display.update()
+
+    while a:
+    
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                a = False
 
 dead = False
 run = True
@@ -502,5 +517,6 @@ mytheme = pygame_menu.themes.Theme(
 menu = pygame_menu.Menu(720, 1080, 'Mr. Hedgehog\'s Adventures', theme=mytheme)
 nick = menu.add_text_input('Name: ', default='Jacuś')
 menu.add_button('Play', rules)
+menu.add_button('Credits', authors)
 menu.add_button('Quit', quit_the_game)
 menu.mainloop(screen, fps_limit=100)
